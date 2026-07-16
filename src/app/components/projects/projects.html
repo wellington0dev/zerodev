@@ -1,0 +1,40 @@
+<div class="container" [style]="'background:'+currentProject.colors.background">
+    <div class="project-card" [style.--p-primary]="currentProject.colors.primary" [style.--p-secondary]="currentProject.colors.secondary"
+        [style.--p-tertiary]="currentProject.colors.tertiary">
+
+        <div class="cover">
+            @if (currentProject.cover) {
+            <img [src]="currentProject.cover" [alt]="currentProject.name">
+            }
+        </div>
+
+        <div class="info">
+            <header>
+                <h2>{{ currentProject.name }}</h2>
+                <span class="version">v{{ currentProject.version }}</span>
+            </header>
+
+            <p class="description">{{ currentProject.description }}</p>
+
+            <div class="images">
+                @for (img of currentProject.images; track $index) {
+                <img [src]="img" [alt]="currentProject.name + ' screenshot ' + ($index + 1)">
+                }
+            </div>
+
+            <div>
+                <div class="dates">
+                    <span>Criado em {{ currentProject.created }}</span>
+                    <span>Atualizado em {{ currentProject.updated }}</span>
+                </div>
+
+                <a class="repo-link" [href]="currentProject.git" target="_blank">
+                    <i class="bi bi-github"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="mush m1" [style]="'background:' + currentProject.colors.primary"></div>
+    <div class="mush m2" [style]="'background:' + currentProject.colors.secondary"></div>
+    <div class="mush m3" [style]="'background:' + currentProject.colors.tertiary"></div>
+</div>

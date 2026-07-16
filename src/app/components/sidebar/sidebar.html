@@ -1,0 +1,19 @@
+<aside>
+    <div class="profile">
+        <div class="picture">
+            <img src="assets/profile.png" alt="">
+        </div>
+    </div>
+    <h1>Zer0Dev</h1>
+    <p>Desenvolvendo desde 09/2022</p>
+    <div class="networks">
+        @for (n of networks(); track $index) {
+        <a [href]="n.link" target="_blank">
+            <div class="n" [style.background]="getBackground(n)" [style.color]="n.fontColor ?? null">
+                <i [class]="n.icon"></i>
+            </div>
+        </a>
+        }
+    </div>
+    <p>Se quiser falar comigo me chama no instagram!</p>
+</aside>

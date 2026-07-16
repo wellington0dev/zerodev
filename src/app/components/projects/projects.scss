@@ -1,0 +1,36 @@
+.container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: calc(100vh - var(--topbar-height));
+    border: 1px solid white;
+
+    .mush {
+        position: absolute;
+        border-radius: 50%;
+    }
+
+    .m1 {
+        width: 60vw;
+        height: 60vw;
+        bottom: -40vw;
+        left: -5vw;
+        z-index: 3;
+    }
+
+    .m2 {
+        width: 80vw;
+        height: 80vw;
+        bottom: -45vw;
+        left: -5vw;
+        z-index: 2        ;
+    }
+
+    .m3{
+        width: 100vw;
+        height: 100vw;
+        bottom: -50vw;
+        left: -5vw;
+        z-index: 1;
+    }
+}

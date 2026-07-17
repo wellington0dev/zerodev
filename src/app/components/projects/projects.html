@@ -1,40 +1,71 @@
-<div class="container" [style]="'background:'+currentProject.colors.background">
-    <div class="project-card" [style.--p-primary]="currentProject.colors.primary" [style.--p-secondary]="currentProject.colors.secondary"
-        [style.--p-tertiary]="currentProject.colors.tertiary">
+<div class="projects-page">
+    @for (project of projects(); track project.name; let i = $index) {
+    <section class="project-section" [class.reverse]="i % 2 === 1"
+        [style.background]="project.colors.background"
+        [style.--p-primary]="project.colors.primary"
+        [style.--p-secondary]="project.colors.secondary">
 
-        <div class="cover">
-            @if (currentProject.cover) {
-            <img [src]="currentProject.cover" [alt]="currentProject.name">
-            }
-        </div>
+        <div class="mush m1" [style.background]="project.colors.primary"></div>
+        <div class="mush m2" [style.background]="project.colors.secondary"></div>
 
-        <div class="info">
-            <header>
-                <h2>{{ currentProject.name }}</h2>
-                <span class="version">v{{ currentProject.version }}</span>
-            </header>
+        <div class="project-content">
+            <div class="visual">
+                @if (project.cover) {
+                <div class="cover">
+                    <img [src]="project.cover" [alt]="project.name">
+                </div>
+                }
 
-            <p class="description">{{ currentProject.description }}</p>
+                @if (project.images.length === 1) {
+                <div class="gallery">
+                    <img class="single" [src]="project.images[0]" [alt]="project.name + ' screenshot'">
+                </div>
+                } @else if (project.images.length > 1) {
+                <div class="gallery">
+                    <div class="carousel">
+                        <div class="track" [style.transform]="'translateX(-' + (activeSlide()[i] * 100) + '%)'">
+                            @for (img of project.images; track $index) {
+                            <img [src]="img" [alt]="project.name + ' screenshot ' + ($index + 1)">
+                            }
+                        </div>
 
-            <div class="images">
-                @for (img of currentProject.images; track $index) {
-                <img [src]="img" [alt]="currentProject.name + ' screenshot ' + ($index + 1)">
+                        <button class="nav prev" (click)="prevSlide(i)" aria-label="Imagem anterior">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <button class="nav next" (click)="nextSlide(i)" aria-label="Próxima imagem">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
+
+                        <div class="dots">
+                            @for (img of project.images; track $index) {
+                            <span class="dot" [class.active]="activeSlide()[i] === $index"
+                                (click)="goToSlide(i, $index)"></span>
+                            }
+                        </div>
+                    </div>
+                </div>
                 }
             </div>
 
-            <div>
+            <div class="info">
+                <header>
+                    <h2>{{ project.name }}</h2>
+                    <span class="version">v{{ project.version }}</span>
+                </header>
+
                 <div class="dates">
-                    <span>Criado em {{ currentProject.created }}</span>
-                    <span>Atualizado em {{ currentProject.updated }}</span>
+                    <span><i class="bi bi-calendar3"></i> Criado em {{ project.created }}</span>
+                    <span><i class="bi bi-arrow-clockwise"></i> Atualizado em {{ project.updated }}</span>
                 </div>
 
-                <a class="repo-link" [href]="currentProject.git" target="_blank">
+                <p class="description">{{ project.description }}</p>
+
+                <a class="repo-link" [href]="project.git" target="_blank">
                     <i class="bi bi-github"></i>
+                    <span>Ver repositório</span>
                 </a>
             </div>
         </div>
-    </div>
-    <div class="mush m1" [style]="'background:' + currentProject.colors.primary"></div>
-    <div class="mush m2" [style]="'background:' + currentProject.colors.secondary"></div>
-    <div class="mush m3" [style]="'background:' + currentProject.colors.tertiary"></div>
+    </section>
+    }
 </div>

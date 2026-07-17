@@ -10,9 +10,9 @@ export class Projects {
   projects = signal([
     {
       name: "Helena AI",
-      description: "",
-      git: "https://github.com/wellington0dev/helenai_server.git",
-      images: [],
+      description: "abagalakbnfdkajbgf ouawhfoeafb çauo aow bfaeu fgawuf gpwa gfv9apw gpa pag ẃfgwa8 ghf8awhf8 h08áeh",
+      git: "https://github.com/wellington0dev/helena-mob.git",
+      images: ["helena/helena.png","helena/helena1.png"],
       cover: "",
       created: "12/07/2026",
       updated: "13/07/2026",
@@ -20,10 +20,36 @@ export class Projects {
       colors: {
         primary: "#11daf5",
         secondary: "#12a7f0",
-        tertiary: "#003e46",
         background: "#08203f",
       }
     }
   ])
-  currentProject = this.projects()[0];
+
+  activeSlide = signal<number[]>(this.projects().map(() => 0));
+
+  prevSlide(i: number) {
+    this.activeSlide.update(arr => {
+      const copy = [...arr];
+      const len = this.projects()[i].images.length;
+      copy[i] = (copy[i] - 1 + len) % len;
+      return copy;
+    });
+  }
+
+  nextSlide(i: number) {
+    this.activeSlide.update(arr => {
+      const copy = [...arr];
+      const len = this.projects()[i].images.length;
+      copy[i] = (copy[i] + 1) % len;
+      return copy;
+    });
+  }
+
+  goToSlide(i: number, slide: number) {
+    this.activeSlide.update(arr => {
+      const copy = [...arr];
+      copy[i] = slide;
+      return copy;
+    });
+  }
 }

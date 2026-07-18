@@ -27,7 +27,7 @@ export class Projects {
     {
       name: "Mix Songs",
       description: "Aplicativo para baixar e reproduzir musicas gratuitamente.",
-      git: "https://github.com/wellington0dev/helena-mob.git",
+      git: "https://github.com/wellington0dev/mixsongs.git",
       images: ["mixsongs/mixsongs1.png","mixsongs/mixsongs.png"],
       orientation: "mobile",
       cover: "",

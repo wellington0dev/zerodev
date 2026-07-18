@@ -1,9 +1,8 @@
-<div class="projects-page">
-    @for (project of projects(); track project.name; let i = $index) {
-    <section class="project-section" [class.reverse]="i % 2 === 1"
-        [style.background]="project.colors.background"
-        [style.--p-primary]="project.colors.primary"
-        [style.--p-secondary]="project.colors.secondary">
+@for (project of projects(); track project.name; let i = $index) {
+<section class="project-section" [class.reverse]="i % 2 === 1" [attr.id]="i === 0 ? 'projects' : null"
+    [style.background]="project.colors.background"
+    [style.--p-primary]="project.colors.primary"
+    [style.--p-secondary]="project.colors.secondary">
 
         <div class="mush m1" [style.background]="project.colors.primary"></div>
         <div class="mush m2" [style.background]="project.colors.secondary"></div>
@@ -17,11 +16,11 @@
                 }
 
                 @if (project.images.length === 1) {
-                <div class="gallery">
+                <div class="gallery" [class.mobile]="project.orientation === 'mobile'">
                     <img class="single" [src]="project.images[0]" [alt]="project.name + ' screenshot'">
                 </div>
                 } @else if (project.images.length > 1) {
-                <div class="gallery">
+                <div class="gallery" [class.mobile]="project.orientation === 'mobile'">
                     <div class="carousel">
                         <div class="track" [style.transform]="'translateX(-' + (activeSlide()[i] * 100) + '%)'">
                             @for (img of project.images; track $index) {
@@ -68,4 +67,3 @@
         </div>
     </section>
     }
-</div>

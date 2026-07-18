@@ -4,10 +4,32 @@ nav{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     box-shadow: var(--shadow-md);
     padding: 0 20px;
     background: var(--bg);
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-4);
+
+        .nav-link {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-family: var(--font);
+            font-size: var(--fs-md);
+            font-weight: var(--fw-semibold);
+            cursor: pointer;
+            padding: 6px 4px;
+            transition: color var(--dur-2) var(--ease);
+
+            &:hover {
+                color: var(--text);
+            }
+        }
+    }
 
     .toggle-button{
         width: 40px;

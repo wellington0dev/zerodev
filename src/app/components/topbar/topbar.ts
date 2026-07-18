@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, output, signal } from '@angular/core';
 
 @Component({
   selector: 'app-topbar',
@@ -8,6 +8,7 @@ import { Component, OnInit, signal } from '@angular/core';
 })
 export class Topbar implements OnInit {
   darkTheme = signal(false);
+  navigate = output<string>();
 
   ngOnInit(): void {
     let theme = localStorage.getItem("theme");

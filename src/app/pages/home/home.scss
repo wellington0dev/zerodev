@@ -1,6 +1,12 @@
 main{
     position: fixed;
     top: 0;
-    right: 0;
-    width: calc(100vw - var(--sidebar-width));
+    left: 0;
+    width: 100%;
+}
+
+.scroll-area {
+    height: calc(100vh - var(--topbar-height));
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
 }

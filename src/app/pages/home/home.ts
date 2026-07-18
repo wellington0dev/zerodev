@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { Topbar } from '../../components/topbar/topbar';
 import { Sidebar } from '../../components/sidebar/sidebar';
 import { Projects } from '../../components/projects/projects';
@@ -14,5 +14,7 @@ import { Projects } from '../../components/projects/projects';
   styleUrl: './home.scss',
 })
 export class Home {
-  barOpen = signal(false);
+  scrollTo(id: string) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }

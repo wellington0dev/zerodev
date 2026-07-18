@@ -1,7 +1,5 @@
-.projects-page {
-    height: calc(100vh - var(--topbar-height));
-    overflow-y: auto;
-    scroll-snap-type: y mandatory;
+:host {
+    display: contents;
 }
 
 .project-section {
@@ -14,8 +12,6 @@
     align-items: center;
     padding: var(--sp-8);
 
-    --section-text: #f3f8fc;
-    --section-text-muted: rgba(243, 248, 252, 0.72);
 
     .mush {
         position: absolute;
@@ -173,12 +169,31 @@
                     }
                 }
             }
+
+            &.mobile {
+                max-width: 220px;
+                margin-left: auto;
+                margin-right: auto;
+
+                .single,
+                .carousel {
+                    height: auto;
+                    aspect-ratio: 9 / 18;
+                    background: rgba(0, 0, 0, 0.15);
+                }
+
+                .single,
+                .carousel .track img {
+                    object-fit: contain;
+                }
+            }
         }
     }
 
     .info {
         header {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             gap: var(--sp-3);
             margin-bottom: var(--sp-3);
@@ -267,8 +282,51 @@
             }
         }
 
+        .visual .gallery {
+            margin-left: var(--sp-4);
+            margin-right: var(--sp-3);
+        }
+
         .info .description {
             max-width: none;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .project-section {
+        padding: var(--sp-5) var(--sp-4);
+
+        .visual .gallery {
+            margin-top: -24px;
+            margin-left: var(--sp-2);
+            margin-right: var(--sp-2);
+
+            .single,
+            .carousel {
+                height: 220px;
+            }
+
+            .carousel .nav {
+                width: 38px;
+                height: 38px;
+            }
+        }
+
+        .info {
+            header h2 {
+                font-size: var(--fs-xl);
+            }
+
+            .dates {
+                gap: var(--sp-3);
+                font-size: var(--fs-xs);
+            }
+
+            .repo-link {
+                width: 100%;
+                justify-content: center;
+            }
         }
     }
 }

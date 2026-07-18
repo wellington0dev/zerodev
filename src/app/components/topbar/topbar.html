@@ -1,4 +1,9 @@
 <nav>
+    <div class="nav-links">
+        <button class="nav-link" (click)="navigate.emit('home')">Início</button>
+        <button class="nav-link" (click)="navigate.emit('projects')">Projetos</button>
+    </div>
+
     <button class="toggle-button" (click)="toggleTheme()">
         @if(darkTheme()){
         <i class="bi bi-moon-stars"></i>

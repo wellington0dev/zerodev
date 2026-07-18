@@ -7,7 +7,6 @@ import { Component, signal } from '@angular/core';
   styleUrl: './sidebar.scss',
 })
 export class Sidebar {
-
   networks = signal([
     {
       name: "Instagram",

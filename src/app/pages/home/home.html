@@ -1,5 +1,7 @@
-<app-sidebar></app-sidebar>
 <main>
-    <app-topbar></app-topbar>
-    <app-projects></app-projects>
+    <app-topbar (navigate)="scrollTo($event)"></app-topbar>
+    <div class="scroll-area">
+        <app-sidebar></app-sidebar>
+        <app-projects></app-projects>
+    </div>
 </main>
